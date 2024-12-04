@@ -2,10 +2,10 @@
 Extensions for bzlmod.
 """
 
-# load(":repositories.bzl", "tsconfig_repository")
+load("//tsconfig/private:tsconfig_repository.bzl", "tsconfig_repository")
 
 def _tsconfig_impl(ctx):
-    # tsconfig_repository(name = "tsconfig")
+    tsconfig_repository(name = "tsconfig")
     return ctx.extension_metadata()
 
 tsconfig = module_extension(

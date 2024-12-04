@@ -89,63 +89,6 @@
   },
   "selectedYankedVersions": {},
   "moduleExtensions": {
-    "//gasworks:extensions.bzl%gasworks": {
-      "general": {
-        "bzlTransitiveDigest": "X4PH8FbOQcbIZFc+5gc05pdtouu0mTD5q+WMdARe5/E=",
-        "usagesDigest": "Mk1Vzc3gvTWpp7zrPCC98eNKs07BKMMz3mSfSfV9Is8=",
-        "recordedFileInputs": {},
-        "recordedDirentsInputs": {},
-        "envVariables": {},
-        "generatedRepoSpecs": {
-          "gasworks_x86_64-apple-darwin": {
-            "bzlFile": "@@//gasworks:repositories.bzl",
-            "ruleClassName": "gasworks_repositories",
-            "attributes": {
-              "platform": "x86_64-apple-darwin",
-              "gasworks_version": "1.14.2"
-            }
-          },
-          "gasworks_x86_64-unknown-linux-gnu": {
-            "bzlFile": "@@//gasworks:repositories.bzl",
-            "ruleClassName": "gasworks_repositories",
-            "attributes": {
-              "platform": "x86_64-unknown-linux-gnu",
-              "gasworks_version": "1.14.2"
-            }
-          },
-          "gasworks_x86_64-pc-windows-msvc": {
-            "bzlFile": "@@//gasworks:repositories.bzl",
-            "ruleClassName": "gasworks_repositories",
-            "attributes": {
-              "platform": "x86_64-pc-windows-msvc",
-              "gasworks_version": "1.14.2"
-            }
-          },
-          "gasworks_toolchains": {
-            "bzlFile": "@@//gasworks/private:toolchains_repo.bzl",
-            "ruleClassName": "toolchains_repo",
-            "attributes": {
-              "user_repository_name": "gasworks"
-            }
-          },
-          "gasworks_aarch64-apple-darwin": {
-            "bzlFile": "@@//gasworks:repositories.bzl",
-            "ruleClassName": "gasworks_repositories",
-            "attributes": {
-              "platform": "aarch64-apple-darwin",
-              "gasworks_version": "1.14.2"
-            }
-          }
-        },
-        "recordedRepoMappingEntries": [
-          [
-            "",
-            "bazel_tools",
-            "bazel_tools"
-          ]
-        ]
-      }
-    },
     "@@apple_support~//crosstool:setup.bzl%apple_cc_configure_extension": {
       "general": {
         "bzlTransitiveDigest": "PjIds3feoYE8SGbbIq2SFTZy3zmxeO2tQevJZNDo7iY=",

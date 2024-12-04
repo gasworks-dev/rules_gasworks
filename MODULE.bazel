@@ -14,5 +14,5 @@ bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.4.1", dev_dependenc
 bazel_dep(name = "aspect_bazel_lib", version = "1.32.1", dev_dependency = True)
 bazel_dep(name = "buildifier_prebuilt", version = "6.1.2", dev_dependency = True)
 
-# gasworks = use_extension("//gasworks:extensions.bzl", "gasworks")
-# use_repo(gasworks, "gasworks")
+tsconfig = use_extension("//tsconfig:extensions.bzl", "tsconfig")
+use_repo(tsconfig, "tsconfig")
