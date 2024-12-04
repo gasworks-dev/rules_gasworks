@@ -14,8 +14,5 @@ bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.4.1", dev_dependenc
 bazel_dep(name = "aspect_bazel_lib", version = "1.32.1", dev_dependency = True)
 bazel_dep(name = "buildifier_prebuilt", version = "6.1.2", dev_dependency = True)
 
-gasworks = use_extension("//gasworks:extensions.bzl", "gasworks")
-gasworks.toolchain(gasworks_version = "1.14.2")
-use_repo(gasworks, "gasworks_toolchains")
-
-register_toolchains("@gasworks_toolchains//:all")
+# gasworks = use_extension("//gasworks:extensions.bzl", "gasworks")
+# use_repo(gasworks, "gasworks")

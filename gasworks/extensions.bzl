@@ -1,56 +1,13 @@
-"""Extensions for bzlmod.
-
-Installs a gasworks toolchain.
-Every module can define a toolchain version under the default name, "gasworks".
-The latest of those versions will be selected (the rest discarded),
-and will always be registered by rules_gasworks.
-
-Additionally, the root module can define arbitrarily many more toolchain versions under different
-names (the latest version will be picked for each name) and can register them as it sees fit,
-effectively overriding the default named toolchain due to toolchain resolution precedence.
+"""
+Extensions for bzlmod.
 """
 
-load(":repositories.bzl", "gasworks_register_toolchains")
+# load(":repositories.bzl", "tsconfig_repository")
 
-_DEFAULT_NAME = "gasworks"
+def _tsconfig_impl(ctx):
+    # tsconfig_repository(name = "tsconfig")
+    return ctx.extension_metadata()
 
-gasworks_toolchain = tag_class(attrs = {
-    "name": attr.string(doc = """\
-Base name for generated repositories, allowing more than one gasworks toolchain to be registered.
-Overriding the default is only permitted in the root module.
-""", default = _DEFAULT_NAME),
-    "gasworks_version": attr.string(doc = "Explicit version of gasworks.", mandatory = True),
-})
-
-def _toolchain_extension(module_ctx):
-    registrations = {}
-    for mod in module_ctx.modules:
-        for toolchain in mod.tags.toolchain:
-            if toolchain.name != _DEFAULT_NAME and not mod.is_root:
-                fail("""\
-                Only the root module may override the default name for the gasworks toolchain.
-                This prevents conflicting registrations in the global namespace of external repos.
-                """)
-            if toolchain.name not in registrations.keys():
-                registrations[toolchain.name] = []
-            registrations[toolchain.name].append(toolchain.gasworks_version)
-    for name, versions in registrations.items():
-        if len(versions) > 1:
-            # TODO: should be semver-aware, using MVS
-            selected = sorted(versions, reverse = True)[0]
-
-            # buildifier: disable=print
-            print("NOTE: gasworks toolchain {} has multiple versions {}, selected {}".format(name, versions, selected))
-        else:
-            selected = versions[0]
-
-        gasworks_register_toolchains(
-            name = name,
-            gasworks_version = selected,
-            register = False,
-        )
-
-gasworks = module_extension(
-    implementation = _toolchain_extension,
-    tag_classes = {"toolchain": gasworks_toolchain},
+tsconfig = module_extension(
+    implementation = _tsconfig_impl,
 )
