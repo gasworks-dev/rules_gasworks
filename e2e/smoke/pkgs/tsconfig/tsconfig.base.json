@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "skipLibCheck": false,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "composite": true,
+    "isolatedModules": true,
+    "isolatedDeclarations": true,
+    "plugins": [
+      {
+        // NOTE: This must be installed at the root of the monorepo
+        "name": "ts-bazel-plugin"
+      }
+    ]
+  }
+}

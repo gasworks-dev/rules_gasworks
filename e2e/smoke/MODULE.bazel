@@ -5,3 +5,41 @@ local_path_override(
     module_name = "rules_gasworks",
     path = "../..",
 )
+
+# rules_gasworks
+# ================================================================================
+tsconfig = use_extension("@rules_gasworks//tsconfig:extensions.bzl", "tsconfig")
+use_repo(tsconfig, "tsconfig")
+
+# aspect_rules_js
+# ================================================================================
+bazel_dep(name = "aspect_rules_js", version = "2.1.1")
+
+pnpm = use_extension("@aspect_rules_js//npm:extensions.bzl", "pnpm")
+pnpm.pnpm(
+    name = "pnpm",
+    pnpm_version = "9.7.1",
+)
+use_repo(pnpm, "pnpm")
+
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
+npm.npm_translate_lock(
+    name = "npm",
+    npm_package_target_name = "pkg",
+    npmrc = "//:.npmrc",
+    pnpm_lock = "//:pnpm-lock.yaml",
+    verify_node_modules_ignored = "//:.bazelignore",
+)
+use_repo(npm, "npm")
+
+# aspect_rules_ts
+# ================================================================================
+bazel_dep(name = "aspect_rules_ts", version = "3.3.1")
+
+rules_ts_ext = use_extension(
+    "@aspect_rules_ts//ts:extensions.bzl",
+    "ext",
+    dev_dependency = True,
+)
+rules_ts_ext.deps(ts_version_from = "//:package.json")
+use_repo(rules_ts_ext, "npm_typescript")

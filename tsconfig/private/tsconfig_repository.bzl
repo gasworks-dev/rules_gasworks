@@ -17,8 +17,8 @@ def _resolve_extends(pnpm_lock_importers, tsconfig_from_path, extends):
 
     importer = pnpm_lock_importers[tsconfig_from_dir] if tsconfig_from_dir in pnpm_lock_importers else fail("Could not find package {tsconfig_from_dir} in pnpm-lock.yaml".format(tsconfig_from_dir = tsconfig_from_dir))
 
-    dependencies = importer["dependencies"] if "dependencies" in importer else []
-    dev_dependencies = importer["devDependencies"] if "devDependencies" in importer else []
+    dependencies = importer["dependencies"] if "dependencies" in importer else {}
+    dev_dependencies = importer["devDependencies"] if "devDependencies" in importer else {}
     for (name, details) in dependencies.items() + dev_dependencies.items():
         if name == package_name:
             version = details["version"]

@@ -1,0 +1,30 @@
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config", "ts_project")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@tsconfig//pkgs/foo-lib:tsconfig.bzl", "tsconfig")
+
+npm_link_all_packages(name = "node_modules")
+
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig.json",
+    deps = [
+        ":node_modules/@monorepo/tsconfig",
+    ],
+)
+
+ts_project(
+    name = "typescript",
+    srcs = [
+        "package.json",
+        "src/index.ts",
+    ],
+    composite = tsconfig["compilerOptions"]["composite"],
+    declaration = tsconfig["compilerOptions"]["declaration"],
+    declaration_map = tsconfig["compilerOptions"]["declarationMap"],
+    out_dir = tsconfig["compilerOptions"]["outDir"],
+    root_dir = tsconfig["compilerOptions"]["rootDir"],
+    source_map = tsconfig["compilerOptions"]["sourceMap"],
+    transpiler = "tsc",
+    tsconfig = ":tsconfig",
+    deps = [":node_modules"],
+)

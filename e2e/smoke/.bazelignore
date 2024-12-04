@@ -1,0 +1,3 @@
+node_modules
+pkgs/foo-lib/node_modules
+pkgs/tsconfig/node_modules

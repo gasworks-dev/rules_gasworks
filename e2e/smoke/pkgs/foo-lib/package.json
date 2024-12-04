@@ -1,0 +1,6 @@
+{
+  "name": "@monorepo/foo-lib",
+  "devDependencies": {
+    "@monorepo/tsconfig": "workspace:*"
+  }
+}
